@@ -2,6 +2,7 @@
 
 import os
 import logging
+from logging import handlers
 from twisted.python import log as twisted_log
 
 import settings
@@ -42,7 +43,7 @@ else:
     fmt = logging.Formatter("%(asctime)s %(levelname)s %(name)s # %(message)s")
     
 if settings.LOGFILE != None:
-    file_handler = logging.FileHandler(os.path.join(settings.LOGDIR, settings.LOGFILE))
+    file_handler = logging.handlers.WatchedFileHandler(os.path.join(settings.LOGDIR, settings.LOGFILE))
     file_handler.setFormatter(fmt)
 
 stream_handler = logging.StreamHandler()
